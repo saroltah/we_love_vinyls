@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from autoslug import AutoSlugField
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
 
 
 class Profile(models.Model):
@@ -11,9 +12,13 @@ class Profile(models.Model):
     preferred_music = models.TextField(blank=True)
     about_me = models.TextField(blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
+    image = models.ImageField(
+        upload_to='images/', default='../default_music_tf1fuy'
+    )
 
     def __str__(self):
         return str(self.user)
 
     class Meta:
         ordering = ["-created_on"]
+        

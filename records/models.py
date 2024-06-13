@@ -20,6 +20,9 @@ class Record(models.Model):
     condition = models.CharField(max_length=9,
                             choices=CONDITION_CHOICES,
                             default="Used")
+    image = models.ImageField(
+        upload_to='images/', default='../default_record_ibxfab'
+    )
 
     class Meta:
         ordering = ["-created_on"]
