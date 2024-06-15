@@ -27,6 +27,10 @@ class Record(models.Model):
 
     class Meta:
         ordering = ["-created_on"]
+    
+    class Meta:
+        managed = True
+        db_table = 'records_record'
 
     def __str__(self):
         return f"{self.title}"

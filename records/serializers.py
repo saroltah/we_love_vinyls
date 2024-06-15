@@ -7,5 +7,5 @@ class RecordSerializer(serializers.ModelSerializer):
     class Meta:
         model = Record
         fields = [
-            'uploader', 'author', 'title', 'slug', 'track_list', 'created_on', 'condition', 'image', 'released',
+            'id', 'uploader', 'author', 'title', 'slug', 'track_list', 'created_on', 'condition', 'image', 'released',
         ]

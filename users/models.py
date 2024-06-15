@@ -21,4 +21,8 @@ class Profile(models.Model):
 
     class Meta:
         ordering = ["-created_on"]
+    
+    class Meta:
+        managed = True
+        db_table = 'users_profile'
         
