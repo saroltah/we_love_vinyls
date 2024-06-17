@@ -3,7 +3,7 @@ from .models import Profile
 
 class ProfileSerializer(serializers.ModelSerializer):
     id = serializers.ReadOnlyField(source='user.id')
-    username = serializers.ReadOnlyField(source='user.username')
+    user = serializers.ReadOnlyField(source='user.username')
 
     class Meta:
         model = Profile
