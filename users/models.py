@@ -6,7 +6,7 @@ from django.db.models.signals import post_save
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    member = models.OneToOneField(User, on_delete=models.CASCADE)
     username = models.CharField(max_length=50, primary_key=True)
     slug = AutoSlugField(unique=True, populate_from='username')
     preferred_music = models.TextField(blank=True)
@@ -22,4 +22,5 @@ class Profile(models.Model):
     class Meta:
         ordering = ["-created_on"]
     
+
         
