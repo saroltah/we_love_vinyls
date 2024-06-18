@@ -2,10 +2,15 @@ from rest_framework import serializers
 from .models import Record
 
 class RecordSerializer(serializers.ModelSerializer):
-    uploader = serializers.ReadOnlyField(source='uploader.username')
+    advertiser = serializers.ReadOnlyField(source='advertiser.username')
+    is_advertiser = serializers.SerializerMethodField()
+
+    def get_is_advertiser(self, obj):
+        request = self.context['request']
+        return request.user == obj.advertiser
 
     class Meta:
         model = Record
         fields = [
-            'id', 'uploader', 'author', 'title', 'slug', 'track_list', 'created_on', 'condition', 'image', 'released',
+            'id', 'advertiser', 'artist', 'title', 'track_list', 'created_on', 'condition', 'image', 'released', 'is_advertiser',
         ]
