@@ -5,16 +5,18 @@ from .models import Market
 from .serializers import MarketSerializer
 from django.http import Http404
 from rest_framework import status
+from we_love_vinyls.permissions import IsOrganizerOrReadOnly
 
 
 class AllMarkets(APIView):
     def get(self, request):
         markets = Market.objects.all()
-        serializer = MarketSerializer(markets, many= True)
+        serializer = MarketSerializer(markets, many= True, context = {'request' : request})
         return Response(serializer.data)
 
 class OneMarket(APIView):
     serializer_class = MarketSerializer
+    permission_classes =[IsOrganizerOrReadOnly]
 
     def get_object(self, pk):
         try:
@@ -25,12 +27,12 @@ class OneMarket(APIView):
 
     def get(self, request, pk):
         market = self.get_object(pk)
-        serializer=MarketSerializer(market)
+        serializer=MarketSerializer(market, context = {'request' : request})
         return Response(serializer.data)
 
     def put (self, request, pk):
         market =self.get_object(pk)
-        serializer=MarketSerializer(market, data=request.data)
+        serializer=MarketSerializer(market, data=request.data, context = {'request' : request})
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)

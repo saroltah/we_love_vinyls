@@ -1,10 +1,10 @@
 from django.db import models
 from django.utils import timezone
-from users.models import Profile
+from django.contrib.auth.models import User
 
 
 class Market(models.Model):
-    organizer = models.ForeignKey(Profile, on_delete=models.CASCADE, default='')
+    organizer = models.ForeignKey(User, on_delete=models.CASCADE)
     country = models.CharField(max_length=100)
     city = models.CharField(max_length=100)
     address = models.CharField(max_length=500)

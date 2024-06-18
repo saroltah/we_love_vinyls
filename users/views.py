@@ -5,7 +5,7 @@ from .models import Profile
 from .serializers import ProfileSerializer
 from django.http import Http404
 from rest_framework import status
-from we_love_vinyls.permissions import IsOwnerOrReadOnly
+from we_love_vinyls.permissions import IsMemberOrReadOnly
 
 
 class AllProfiles(APIView):
@@ -16,7 +16,7 @@ class AllProfiles(APIView):
 
 class OneProfile(APIView):
     serializer_class = ProfileSerializer
-    permission_classes =[IsOwnerOrReadOnly]
+    permission_classes =[IsMemberOrReadOnly]
 
     def get_object(self, slug):
         try:
