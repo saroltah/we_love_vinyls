@@ -9,7 +9,8 @@ class Market(models.Model):
     city = models.CharField(max_length=100)
     address = models.CharField(max_length=500)
     date = models.DateField()
-    time = models.TimeField()
+    start = models.TimeField(default='12:00')
+    end = models.TimeField()
     description = models.TextField(default='')
     created_on = models.DateTimeField(auto_now_add=True)
     

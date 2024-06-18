@@ -12,5 +12,5 @@ class MarketSerializer(serializers.ModelSerializer):
     class Meta:
         model = Market
         fields = [
-            'id', 'organizer', 'country', 'city', 'address', 'date', 'time', 'description', 'is_organizer',
+            'id', 'organizer', 'country', 'city', 'address', 'date', 'start', 'end', 'description', 'is_organizer',
         ]
