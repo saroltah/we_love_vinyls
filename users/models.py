@@ -13,7 +13,7 @@ class Profile(models.Model):
     about_me = models.TextField(blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(
-        upload_to='images/', default='../default_music_tf1fuy'
+        upload_to='images/', default='../option_purple_wikcab'
     )
 
     def __str__(self):
