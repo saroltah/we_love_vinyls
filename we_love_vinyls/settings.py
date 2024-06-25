@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'records',
     'users',
     'markets',
+    'comments',
 ]
 
 MIDDLEWARE = [

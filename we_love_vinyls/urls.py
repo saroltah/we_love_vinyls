@@ -23,4 +23,6 @@ urlpatterns = [
     path('', include('users.urls')),
     path('', include('records.urls')),
     path('', include('markets.urls')),
+    path('', include('comments.urls')),
+
 ]
