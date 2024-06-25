@@ -52,3 +52,9 @@ class OneRecord(APIView):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def delete(self, request, pk):
+        record = self.get_object(pk)
+        record.delete()
+        return Response(
+            status=status.HTTP_204_NO_CONTENT
+        )
