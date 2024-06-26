@@ -13,7 +13,7 @@ class AllLikes(generics.ListCreateAPIView):
     queryset = Like.objects.all()
     
     def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
+        serializer.save(member=self.request.user)
 
 class OneLike(generics.RetrieveDestroyAPIView):
    
@@ -30,7 +30,7 @@ class AllAttendance(generics.ListCreateAPIView):
     queryset = Attendance.objects.all()
     
     def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
+        serializer.save(member=self.request.user)
 
 
 class OneAttendance(generics.RetrieveDestroyAPIView):

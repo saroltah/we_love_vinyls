@@ -18,7 +18,7 @@ class Like(models.Model):
 
 class Attendance(models.Model):
     member = models.ForeignKey(User, on_delete=models.CASCADE)
-    attended_market = models.ForeignKey(Record, on_delete=models.CASCADE, related_name='attendance')
+    attended_market = models.ForeignKey(Market, on_delete=models.CASCADE, related_name='attendance')
     created_on = models.DateTimeField(auto_now_add=True)
 
     class Meta:

@@ -1,18 +1,18 @@
 from rest_framework import serializers
 from .models import Like, Attendance
+from django.db import IntegrityError
 
 class LikeSerializer(serializers.ModelSerializer):
     member = serializers.ReadOnlyField(source='member.username')
-    is_member = serializers.SerializerMethodField()
     
     def get_is_member(self, obj):
         request = self.context['request']
         return request.user == obj.member
 
     class Meta:
-        model = Attendance
+        model = Like
         fields = [
-            'id', 'member', 'liked_record', 'created_on', 'is_member'
+            'id', 'member', 'liked_record', 'created_on',
         ]
 
     def create(self, validated_data):
