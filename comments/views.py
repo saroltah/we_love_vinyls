@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
-
 from .models import Comment
 from .serializers import CommentSerializer, OneCommentSerializer
 from rest_framework import generics, permissions
