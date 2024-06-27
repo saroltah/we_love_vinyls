@@ -4,6 +4,7 @@ from django.db import IntegrityError
 
 class LikeSerializer(serializers.ModelSerializer):
     member = serializers.ReadOnlyField(source='member.username')
+    is_member = serializers.SerializerMethodField()
     
     def get_is_member(self, obj):
         request = self.context['request']
@@ -12,7 +13,7 @@ class LikeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Like
         fields = [
-            'id', 'member', 'liked_record', 'created_on',
+            'id', 'member', 'liked_record', 'created_on', 'is_member'
         ]
 
     def create(self, validated_data):
