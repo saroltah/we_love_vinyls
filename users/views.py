@@ -9,6 +9,7 @@ from we_love_vinyls.permissions import IsMemberOrReadOnly
 from django.db.models import Count
 
 
+
 class AllProfiles(generics.ListAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
@@ -21,3 +22,4 @@ class OneProfile(generics.RetrieveUpdateAPIView):
         liked_record_count=Count('member__like', distinct=True),
         attended_market_count=Count('member__attendance', distinct=True),
     ).order_by('-created_on')
+

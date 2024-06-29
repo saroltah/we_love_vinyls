@@ -7,6 +7,7 @@ from django.http import Http404
 from rest_framework import status, permissions, generics, filters
 from we_love_vinyls.permissions import IsAdvertiserOrReadOnly
 from django.db.models import Count
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 class AllRecords(generics.ListCreateAPIView):
@@ -15,12 +16,14 @@ class AllRecords(generics.ListCreateAPIView):
         comment_count=Count('comment', distinct=True),)
 
     filter_backends = [
-        filters.SearchFilter,
+        filters.SearchFilter,DjangoFilterBackend,
+    ]
+    filterset_fields = [
+        'genre',
     ]
     search_fields = [
         'artist',
         'title',
-        'genre',
     ]
 
     serializer_class = RecordSerializer

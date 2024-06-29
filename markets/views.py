@@ -7,6 +7,7 @@ from django.http import Http404
 from rest_framework import status, permissions, generics, filters
 from we_love_vinyls.permissions import IsOrganizerOrReadOnly
 from django.db.models import Count
+from django_filters.rest_framework import DjangoFilterBackend
 
 class AllMarkets(generics.ListCreateAPIView):
     queryset=Market.objects.annotate(
@@ -14,12 +15,10 @@ class AllMarkets(generics.ListCreateAPIView):
     ).order_by('-created_on')
 
     filter_backends = [
-        filters.SearchFilter,
+        DjangoFilterBackend,
     ]
-    search_fields = [
-        'date',
-        'country',
-        'city',
+    filterset_fields = [
+        'country', 'city',
     ]
 
     serializer_class = MarketSerializer

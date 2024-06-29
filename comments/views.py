@@ -3,8 +3,9 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Comment
 from .serializers import CommentSerializer, OneCommentSerializer
-from rest_framework import generics, permissions
+from rest_framework import generics, permissions, filters
 from we_love_vinyls.permissions import IsMemberOrReadOnly
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 class AllComments(generics.ListCreateAPIView):
@@ -14,6 +15,13 @@ class AllComments(generics.ListCreateAPIView):
         permissions.IsAuthenticatedOrReadOnly
     ]
     queryset = Comment.objects.all()
+
+    filter_backends = [
+        filters.SearchFilter,DjangoFilterBackend,
+    ]
+    filterset_fields = [
+        'commented_record',
+    ]
 
     def perform_create(self, serializer):
         serializer.save(member=self.request.user)
