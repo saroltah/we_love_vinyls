@@ -5,6 +5,9 @@ class ProfileSerializer(serializers.ModelSerializer):
     id = serializers.ReadOnlyField(source='member.id')
     member = serializers.ReadOnlyField(source='member.username')
     is_member = serializers.SerializerMethodField()
+    liked_record_count = serializers.ReadOnlyField()
+    attended_market_count = serializers.ReadOnlyField()
+
 
     def validate_image(self, value):
         if value.size > 2097152:
@@ -25,4 +28,4 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Profile
-        fields = '__all__' 
+        fields = 'id', 'member', 'username', 'slug', 'preferred_music', 'about_me', 'created_on', 'image', 'is_member', 'liked_record_count', 'attended_market_count', 
