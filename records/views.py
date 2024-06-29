@@ -25,4 +25,5 @@ class OneRecord(generics.RetrieveUpdateDestroyAPIView):
 
     queryset = Record.objects.annotate(
         members_liking_count=Count('like__member', distinct=True),
+        comment_count=Count('comment__content', distinct=True),
     ).order_by('-created_on')
