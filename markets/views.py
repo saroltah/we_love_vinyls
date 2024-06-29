@@ -9,7 +9,9 @@ from we_love_vinyls.permissions import IsOrganizerOrReadOnly
 from django.db.models import Count
 
 class AllMarkets(generics.ListCreateAPIView):
-    queryset = Market.objects.all()
+    queryset=Market.objects.annotate(
+        members_attending_count=Count('attendance', distinct=True),
+    ).order_by('-created_on')
     serializer_class = MarketSerializer
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly
@@ -23,5 +25,5 @@ class OneMarket(generics.RetrieveUpdateDestroyAPIView):
     permission_classes =[IsOrganizerOrReadOnly]
 
     queryset = Market.objects.annotate(
-        members_attending_count=Count('attendance__member', distinct=True),
+        members_attending_count=Count('attendance', distinct=True),
     ).order_by('-created_on')

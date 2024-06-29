@@ -10,7 +10,9 @@ from django.db.models import Count
 
 
 class AllRecords(generics.ListCreateAPIView):
-    queryset = Record.objects.all() 
+    queryset = Record.objects.annotate(
+        members_liking_count=Count('like', distinct=True),
+        comment_count=Count('comment', distinct=True),)
     serializer_class = RecordSerializer
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly
@@ -24,6 +26,6 @@ class OneRecord(generics.RetrieveUpdateDestroyAPIView):
     permission_classes =[IsAdvertiserOrReadOnly]
 
     queryset = Record.objects.annotate(
-        members_liking_count=Count('like__member', distinct=True),
-        comment_count=Count('comment__content', distinct=True),
+        members_liking_count=Count('like', distinct=True),
+        comment_count=Count('comment', distinct=True),
     ).order_by('-created_on')
