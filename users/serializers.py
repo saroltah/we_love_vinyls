@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Profile
 from likes.models import Like
+from likes.models import Attendance
 
 class ProfileSerializer(serializers.ModelSerializer):
     id = serializers.ReadOnlyField(source='member.id')
@@ -9,6 +10,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     liked_record_count = serializers.ReadOnlyField()
     liked_record_id = serializers.SerializerMethodField()
     attended_market_count = serializers.ReadOnlyField()
+    attended_market_id = serializers.SerializerMethodField()
     
 
 
@@ -38,6 +40,15 @@ class ProfileSerializer(serializers.ModelSerializer):
             return liked_record.id if liked_record else None
         return None
     
+    def get_attended_market_id(self, obj):
+        user = self.context['request'].user
+        if user.is_authenticated:
+            attended_market = Attendance.objects.filter(
+                member=user, attended_market =obj.id
+            ).first()
+            return attended_market.id if attended_market else None
+        return None
+
     class Meta:
         model = Profile
-        fields = 'id', 'member', 'username', 'slug', 'preferred_music', 'about_me', 'created_on', 'image', 'is_member', 'liked_record_count', 'liked_record_id', 'attended_market_count',  
+        fields = 'id', 'member', 'username', 'slug', 'preferred_music', 'about_me', 'created_on', 'image', 'is_member', 'liked_record_count', 'liked_record_id', 'attended_market_count','attended_market_id'  
