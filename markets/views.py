@@ -4,57 +4,24 @@ from rest_framework.response import Response
 from .models import Market
 from .serializers import MarketSerializer
 from django.http import Http404
-from rest_framework import status, permissions
+from rest_framework import status, permissions, generics
 from we_love_vinyls.permissions import IsOrganizerOrReadOnly
+from django.db.models import Count
 
-
-class AllMarkets(APIView):
-
+class AllMarkets(generics.ListCreateAPIView):
+    queryset = Market.objects.all()
     serializer_class = MarketSerializer
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly
     ]
 
-    def get(self, request):
-        markets = Market.objects.all()
-        serializer = MarketSerializer(markets, many= True, context = {'request' : request})
-        return Response(serializer.data)
+    def perform_create(self, serializer):
+        serializer.save(organizer=self.request.user)
 
-    def post (self, request, pk):
-        market =self.get_object(pk)
-        serializer=MarketSerializer(market, data=request.data, context = {'request' : request})
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-class OneMarket(APIView):
+class OneMarket(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = MarketSerializer
     permission_classes =[IsOrganizerOrReadOnly]
 
-    def get_object(self, pk):
-        try:
-            market=Market.objects.get(pk=pk)
-            return market
-        except Market.DoesNotExist:
-            raise Http404
-
-    def get(self, request, pk):
-        market = self.get_object(pk)
-        serializer=MarketSerializer(market, context = {'request' : request})
-        return Response(serializer.data)
-
-    def put (self, request, pk):
-        market =self.get_object(pk)
-        serializer=MarketSerializer(market, data=request.data, context = {'request' : request})
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def delete(self, request, pk):
-        market = self.get_object(pk)
-        market.delete()
-        return Response(
-            status=status.HTTP_204_NO_CONTENT
-        )
+    queryset = Market.objects.annotate(
+        members_attending_count=Count('attendance__member', distinct=True),
+    ).order_by('-created_on')

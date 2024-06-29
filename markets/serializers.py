@@ -6,6 +6,7 @@ class MarketSerializer(serializers.ModelSerializer):
     organizer = serializers.ReadOnlyField(source='organizer.username')
     is_organizer = serializers.SerializerMethodField()
     person_attending_id = serializers.SerializerMethodField()
+    members_attending_count = serializers.ReadOnlyField()
 
     def get_is_organizer(self, obj):
         request = self.context['request']
@@ -23,5 +24,5 @@ class MarketSerializer(serializers.ModelSerializer):
     class Meta:
         model = Market
         fields = [
-            'id', 'organizer', 'country', 'city', 'address', 'date', 'start', 'end', 'description', 'is_organizer', 'person_attending_id',
+            'id', 'organizer', 'country', 'city', 'address', 'date', 'start', 'end', 'description', 'is_organizer', 'person_attending_id', 'members_attending_count',
         ]
