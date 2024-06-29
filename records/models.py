@@ -8,6 +8,7 @@ class Record(models.Model):
     advertiser = models.ForeignKey(User, on_delete=models.CASCADE)
     artist = models.CharField(max_length=100)
     title = models.CharField(max_length=100)
+    genre = models.CharField(max_length=100, default='')
     track_list = models.TextField(default='')
     created_on = models.DateTimeField(auto_now_add=True)
     CONDITION_CHOICES = (

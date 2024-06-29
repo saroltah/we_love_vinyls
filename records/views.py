@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from .models import Record
 from .serializers import RecordSerializer
 from django.http import Http404
-from rest_framework import status, permissions, generics
+from rest_framework import status, permissions, generics, filters
 from we_love_vinyls.permissions import IsAdvertiserOrReadOnly
 from django.db.models import Count
 
@@ -13,6 +13,16 @@ class AllRecords(generics.ListCreateAPIView):
     queryset = Record.objects.annotate(
         members_liking_count=Count('like', distinct=True),
         comment_count=Count('comment', distinct=True),)
+
+    filter_backends = [
+        filters.SearchFilter,
+    ]
+    search_fields = [
+        'artist',
+        'title',
+        'genre',
+    ]
+
     serializer_class = RecordSerializer
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly
