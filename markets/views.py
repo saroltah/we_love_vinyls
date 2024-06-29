@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from .models import Market
 from .serializers import MarketSerializer
 from django.http import Http404
-from rest_framework import status, permissions, generics
+from rest_framework import status, permissions, generics, filters
 from we_love_vinyls.permissions import IsOrganizerOrReadOnly
 from django.db.models import Count
 
@@ -12,10 +12,22 @@ class AllMarkets(generics.ListCreateAPIView):
     queryset=Market.objects.annotate(
         members_attending_count=Count('attendance', distinct=True),
     ).order_by('-created_on')
+
+    filter_backends = [
+        filters.SearchFilter,
+    ]
+    search_fields = [
+        'date',
+        'country',
+        'city',
+    ]
+
     serializer_class = MarketSerializer
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly
     ]
+    
+
 
     def perform_create(self, serializer):
         serializer.save(organizer=self.request.user)
