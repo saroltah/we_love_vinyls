@@ -6,6 +6,7 @@ class RecordSerializer(serializers.ModelSerializer):
     advertiser = serializers.ReadOnlyField(source='advertiser.username')
     is_advertiser = serializers.SerializerMethodField()
     like_sent_id = serializers.SerializerMethodField()
+    members_liking_count = serializers.ReadOnlyField()
 
     def validate_image(self, value):
         if value.size > 2097152:
@@ -37,5 +38,5 @@ class RecordSerializer(serializers.ModelSerializer):
     class Meta:
         model = Record
         fields = [
-            'id', 'advertiser', 'artist', 'title', 'track_list', 'created_on', 'condition', 'image', 'released', 'is_advertiser', 'like_sent_id'
+            'id', 'advertiser', 'artist', 'title', 'track_list', 'created_on', 'condition', 'image', 'released', 'is_advertiser', 'like_sent_id', 'members_liking_count',
         ]
