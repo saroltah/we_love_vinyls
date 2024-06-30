@@ -12,10 +12,10 @@ class Market(models.Model):
     start = models.TimeField(default='12:00')
     end = models.TimeField()
     description = models.TextField(default='')
-    created_on = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(auto_now_add=True)
     
     class Meta:
-        ordering = ["-created_on"]
+        ordering = ["-created"]
 
     def __str__(self):
         return f"in {self.city} by {self.organizer}"

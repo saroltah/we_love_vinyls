@@ -11,7 +11,7 @@ class Profile(models.Model):
     slug = AutoSlugField(unique=True, populate_from='username')
     preferred_music = models.TextField(blank=True)
     about_me = models.TextField(blank=True)
-    created_on = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(
         upload_to='images/', default='../option_purple_wikcab'
     )
@@ -20,7 +20,7 @@ class Profile(models.Model):
         return str(self.username)
 
     class Meta:
-        ordering = ["-created_on"]
+        ordering = ["-created"]
     
 
         

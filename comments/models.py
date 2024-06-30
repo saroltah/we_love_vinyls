@@ -8,11 +8,11 @@ class Comment(models.Model):
     member = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField(default='')
     commented_record = models.ForeignKey(Record, on_delete=models.CASCADE)
-    created_on = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(auto_now_add=True)
 
 
     class Meta:
-        ordering = ["-created_on"]
+        ordering = ["-created"]
     
 
     def __str__(self):

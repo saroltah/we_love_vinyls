@@ -12,7 +12,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 class AllMarkets(generics.ListCreateAPIView):
     queryset=Market.objects.annotate(
         members_attending_count=Count('attendance', distinct=True),
-    ).order_by('-created_on')
+    ).order_by('-created')
 
     filter_backends = [
         DjangoFilterBackend,
@@ -37,4 +37,4 @@ class OneMarket(generics.RetrieveUpdateDestroyAPIView):
 
     queryset = Market.objects.annotate(
         members_attending_count=Count('attendance', distinct=True),
-    ).order_by('-created_on')
+    ).order_by('-created')

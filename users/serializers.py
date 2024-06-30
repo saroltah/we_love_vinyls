@@ -2,6 +2,7 @@ from rest_framework import serializers
 from .models import Profile
 from likes.models import Like
 from likes.models import Attendance
+from django.contrib.humanize.templatetags.humanize import naturaltime
 
 class ProfileSerializer(serializers.ModelSerializer):
     id = serializers.ReadOnlyField(source='member.id')
@@ -9,6 +10,11 @@ class ProfileSerializer(serializers.ModelSerializer):
     is_member = serializers.SerializerMethodField()
     liked_record_count = serializers.ReadOnlyField()
     attended_market_count = serializers.ReadOnlyField()
+    created = serializers.SerializerMethodField()
+
+
+    def get_created(self, obj):
+        return naturaltime(obj.created)
    
 
 
@@ -31,4 +37,4 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Profile
-        fields = 'id', 'member', 'username', 'slug', 'preferred_music', 'about_me', 'created_on', 'image', 'is_member', 'liked_record_count', 'attended_market_count',  
+        fields = 'id', 'member', 'username', 'slug', 'preferred_music', 'about_me', 'created', 'image', 'is_member', 'liked_record_count', 'attended_market_count',  

@@ -21,5 +21,5 @@ class OneProfile(generics.RetrieveUpdateAPIView):
     queryset = Profile.objects.annotate(
         liked_record_count=Count('member__like', distinct=True),
         attended_market_count=Count('member__attendance', distinct=True),
-    ).order_by('-created_on')
+    ).order_by('-created')
 
