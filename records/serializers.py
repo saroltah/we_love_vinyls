@@ -6,7 +6,6 @@ from comments.models import Comment
 class RecordSerializer(serializers.ModelSerializer):
     advertiser = serializers.ReadOnlyField(source='advertiser.username')
     is_advertiser = serializers.SerializerMethodField()
-    like_sent_id = serializers.SerializerMethodField()
     members_liking_count = serializers.ReadOnlyField()
     comment_count = serializers.ReadOnlyField()
 
@@ -27,18 +26,9 @@ class RecordSerializer(serializers.ModelSerializer):
         request = self.context['request']
         return request.user == obj.advertiser
 
-    def get_like_sent_id(self, obj):
-        user = self.context['request'].user
-        if user.is_authenticated:
-            like_sent = Like.objects.filter(
-                member=user, liked_record =obj.id
-            ).first()
-            return like_sent.id if like_sent else None
-        return None
-
 
     class Meta:
         model = Record
         fields = [
-            'id', 'advertiser', 'artist', 'title', 'track_list', 'created_on', 'condition', 'image', 'released', 'genre', 'is_advertiser', 'like_sent_id', 'members_liking_count', 'comment_count'
+            'id', 'advertiser', 'artist', 'title', 'track_list', 'created_on', 'condition', 'image', 'released', 'genre', 'is_advertiser', 'members_liking_count', 'comment_count'
         ]
