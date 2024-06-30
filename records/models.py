@@ -52,7 +52,7 @@ class Record(models.Model):
                             default="Alternative Rock"
                             )
     track_list = models.TextField(default='')
-    created_on = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(auto_now_add=True)
     CONDITION_CHOICES = (
         ("New", "New"),
         ("Good", "Good"),
@@ -73,7 +73,7 @@ class Record(models.Model):
     location = models.CharField(max_length=50, default="Stockholm")
     contact = models.CharField(max_length=50, default="email: example@email.com")
     class Meta:
-        ordering = ["-created_on"]
+        ordering = ["-created"]
     
     class Meta:
         managed = True

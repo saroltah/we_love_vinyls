@@ -2,12 +2,17 @@ from rest_framework import serializers
 from .models import Record
 from likes.models import Like
 from comments.models import Comment
+from django.contrib.humanize.templatetags.humanize import naturaltime
 
 class RecordSerializer(serializers.ModelSerializer):
     advertiser = serializers.ReadOnlyField(source='advertiser.username')
     is_advertiser = serializers.SerializerMethodField()
     members_liking_count = serializers.ReadOnlyField()
     comment_count = serializers.ReadOnlyField()
+    created = serializers.SerializerMethodField()
+
+    def get_created(self, obj):
+        return naturaltime(obj.created)
 
     def validate_image(self, value):
         if value.size > 2097152:
@@ -30,5 +35,5 @@ class RecordSerializer(serializers.ModelSerializer):
     class Meta:
         model = Record
         fields = [
-            'id', 'advertiser', 'artist', 'title', 'track_list', 'created_on', 'condition', 'image', 'released', 'genre', 'is_advertiser', 'members_liking_count', 'comment_count', 'price', 'location', 'contact',
+            'id', 'advertiser', 'artist', 'title', 'track_list', 'created', 'condition', 'image', 'released', 'genre', 'is_advertiser', 'members_liking_count', 'comment_count', 'price', 'location', 'contact',
         ]
