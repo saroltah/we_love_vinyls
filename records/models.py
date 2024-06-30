@@ -8,7 +8,49 @@ class Record(models.Model):
     advertiser = models.ForeignKey(User, on_delete=models.CASCADE)
     artist = models.CharField(max_length=100)
     title = models.CharField(max_length=100)
-    genre = models.CharField(max_length=100, default='')
+    GENRE_CHOICES = (
+        ("Pop", "Pop"),
+        ("Rock", "Rock"),
+        ("Blues", "Blues"),
+        ("Country", "Country"),
+        ("Electronic", "Electronic"),
+        ("Punk", "Punk"),
+        ("Classical", "Classical"),
+        ("Alternative Rock", "Alternative Rock"),
+        ("Progressive Rock", "Progressive Rock"),
+        ("Folk music", "Folk music"),
+        ("Synth-pop", "Synth-pop"),
+        ("Hip-hop", "Hip-hop"),
+        ("Jazz", "Jazz"),
+        ("Funk", "Funk"),
+        ("Reggae", "Reggae"),
+        ("Disco", "Disco"),
+        ("Soul", "Soul"),
+        ("Dance", "Dance"),
+        ("Ska", "Ska"),
+        ("Indie Rock", "Indie Rock"),
+        ("Bachata", "Bachata"),
+        ("Techno", "Techno"),
+        ("House", "House"),
+        ("Grunge", "Grunge"),
+        ("Hard Rock", "Hard Rock"),
+        ("Emo", "Emo"),
+        ("Black Metal", "Black Metal"),
+        ("R&B", "R&B"),
+        ("Glam Metal", "Glam Metal"),
+        ("Death Metal", "Death Metal"),
+        ("other", "other"),
+        ("Dubstep", "Dubstep"),
+        ("Gothic", "Gothic"),
+        ("Folk metal", "Folk metal"),
+        ("Heavy metal", "Heavy metal")
+    )
+    genre = models.CharField(
+                            max_length=100,
+                            choices=sorted(GENRE_CHOICES,
+                            key=lambda x:x[1]),
+                            default="Alternative Rock"
+                            )
     track_list = models.TextField(default='')
     created_on = models.DateTimeField(auto_now_add=True)
     CONDITION_CHOICES = (
@@ -16,9 +58,12 @@ class Record(models.Model):
         ("Good", "Good"),
         ("Used", "Used"),
     )
-    condition = models.CharField(max_length=9,
-                            choices=CONDITION_CHOICES,
-                            default="Used")
+    condition = models.CharField(
+                            max_length=9,
+                            choices=sorted(CONDITION_CHOICES,
+                            key=lambda x:x[1]),
+                            default="Good"
+                            )
     image = models.ImageField(
         upload_to='images/', default='../default_record_ibxfab'
     )
