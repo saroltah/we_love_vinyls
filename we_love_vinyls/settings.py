@@ -34,13 +34,38 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cloudinary',
     'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
+    'rest_framework_simplejwt',
+    'django.contrib.sites',
+    'allauth.account',
+    'dj_rest_auth.registration',
     'django_filters',
     'records',
     'users',
     'markets',
     'comments',
     'likes',
+    'allauth',
 ]
+
+SITE_ID = 1
+
+REST_FRAMEWORK = {
+'DEFAULT_AUTHENTICATION_CLASSES': [( 
+        'rest_framework.authentication.SessionAuthentication' 
+        if 'DEV' in os.environ 
+        else 'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
+    )]
+    }
+REST_USE_JWT = True
+JWT_AUTH_COOKIE = 'my-app-auth'
+JWT_AUTH_SECURE = True
+JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
+
+REST_AUTH_SERIALIZERS = {'USER_DETAILS_SERIALIZER': 'we_love_vinyls.serializers.CurrentUserSerializer'}
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

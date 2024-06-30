@@ -25,4 +25,6 @@ urlpatterns = [
     path('', include('markets.urls')),
     path('', include('comments.urls')),
     path('', include('likes.urls')),
+    path('dj-rest-auth/', include('rest_auth.urls')),
+    path('dj_rest_auth.registration/', include('dj_rest_auth.registration.urls')),
 ]
