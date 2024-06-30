@@ -17,7 +17,7 @@ class AllLikes(generics.ListCreateAPIView):
         filters.SearchFilter,DjangoFilterBackend,
     ]
     filterset_fields = [
-        'member',
+        'member__id',
     ]
     
     def perform_create(self, serializer):
@@ -41,7 +41,7 @@ class AllAttendance(generics.ListCreateAPIView):
         filters.SearchFilter,DjangoFilterBackend,
     ]
     filterset_fields = [
-        'member',
+        'member__id',
     ]
     
     def perform_create(self, serializer):

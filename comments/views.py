@@ -20,7 +20,7 @@ class AllComments(generics.ListCreateAPIView):
         filters.SearchFilter,DjangoFilterBackend,
     ]
     filterset_fields = [
-        'commented_record',
+        'commented_record__id',
     ]
 
     def perform_create(self, serializer):
