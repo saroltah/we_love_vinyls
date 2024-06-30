@@ -30,5 +30,5 @@ class RecordSerializer(serializers.ModelSerializer):
     class Meta:
         model = Record
         fields = [
-            'id', 'advertiser', 'artist', 'title', 'track_list', 'created_on', 'condition', 'image', 'released', 'genre', 'is_advertiser', 'members_liking_count', 'comment_count'
+            'id', 'advertiser', 'artist', 'title', 'track_list', 'created_on', 'condition', 'image', 'released', 'genre', 'is_advertiser', 'members_liking_count', 'comment_count', 'price', 'location', 'contact',
         ]
