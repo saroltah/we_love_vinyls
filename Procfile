@@ -1,1 +1,1 @@
-web: gunicorn we_love_vinyls.wsgi
+web: gunicorn we-love-vinyls-b.wsgi
