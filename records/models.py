@@ -3,7 +3,6 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 
 
-
 class Record(models.Model):
     advertiser = models.ForeignKey(User, on_delete=models.CASCADE)
     artist = models.CharField(max_length=100)
