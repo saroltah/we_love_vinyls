@@ -18,7 +18,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', '.we-love-vinyls-b.herokuapp.com',]
 
@@ -36,6 +36,8 @@ INSTALLED_APPS = [
     'cloudinary',
     'rest_framework',
     'django_filters',
+    'rest_framework.authtoken', 
+    'dj_rest_auth',
     'records',
     'users',
     'markets',
@@ -45,9 +47,10 @@ INSTALLED_APPS = [
 
 REST_FRAMEWORK = {
 
-'DATETIME_FORMAT': '%d %b %Y'
-    
+'DATETIME_FORMAT': '%d %b %Y',
+
     }
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -84,11 +87,12 @@ WSGI_APPLICATION = 'we_love_vinyls.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    'default': ({
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    })
 }
+
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': os.getenv('CLOUD_NAME'),
