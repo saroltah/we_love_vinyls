@@ -6,7 +6,4 @@ urlpatterns = [
     path('likes/<int:pk>/', views.OneLike.as_view()),
     path('attendance/', views.AllAttendance .as_view()),
     path('attendance/<int:pk>/', views.OneAttendance.as_view()),
-
-
-    
 ]

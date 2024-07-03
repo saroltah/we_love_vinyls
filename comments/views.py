@@ -9,7 +9,6 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 
 class AllComments(generics.ListCreateAPIView):
-
     serializer_class = CommentSerializer
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly
@@ -17,7 +16,7 @@ class AllComments(generics.ListCreateAPIView):
     queryset = Comment.objects.all()
 
     filter_backends = [
-        filters.SearchFilter,DjangoFilterBackend,
+        filters.SearchFilter, DjangoFilterBackend,
     ]
     filterset_fields = [
         'commented_record__id',
@@ -26,8 +25,8 @@ class AllComments(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(member=self.request.user)
 
+
 class OneComment(generics.RetrieveUpdateDestroyAPIView):
-    
     permission_classes = [IsMemberOrReadOnly]
     serializer_class = OneCommentSerializer
     queryset = Comment.objects.all()

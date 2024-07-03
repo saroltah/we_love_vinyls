@@ -3,6 +3,7 @@ from .models import Like, Attendance
 from django.db import IntegrityError
 from django.contrib.humanize.templatetags.humanize import naturaltime
 
+
 class LikeSerializer(serializers.ModelSerializer):
     member = serializers.ReadOnlyField(source='member.username')
     is_member = serializers.SerializerMethodField()
@@ -11,7 +12,6 @@ class LikeSerializer(serializers.ModelSerializer):
     def get_created(self, obj):
         return naturaltime(obj.created)
 
-    
     def get_is_member(self, obj):
         request = self.context['request']
         return request.user == obj.member
@@ -32,7 +32,7 @@ class LikeSerializer(serializers.ModelSerializer):
 class AttendanceSerializer(serializers.ModelSerializer):
     member = serializers.ReadOnlyField(source='member.username')
     is_member = serializers.SerializerMethodField()
-    
+
     def get_is_member(self, obj):
         request = self.context['request']
         return request.user == obj.member

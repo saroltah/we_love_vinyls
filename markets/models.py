@@ -13,7 +13,7 @@ class Market(models.Model):
     end = models.TimeField()
     description = models.TextField(default='')
     created = models.DateTimeField(auto_now_add=True)
-    
+
     class Meta:
         ordering = ["-created"]
 

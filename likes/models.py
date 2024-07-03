@@ -6,7 +6,9 @@ from markets.models import Market
 
 class Like(models.Model):
     member = models.ForeignKey(User, on_delete=models.CASCADE)
-    liked_record = models.ForeignKey(Record, on_delete=models.CASCADE, related_name='like')
+    liked_record = models.ForeignKey(
+        Record, on_delete=models.CASCADE, related_name='like'
+            )
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -16,9 +18,12 @@ class Like(models.Model):
     def __str__(self):
         return f'{self.member} likes {self.liked_record}'
 
+
 class Attendance(models.Model):
     member = models.ForeignKey(User, on_delete=models.CASCADE)
-    attended_market = models.ForeignKey(Market, on_delete=models.CASCADE, related_name='attendance')
+    attended_market = models.ForeignKey(
+        Market, on_delete=models.CASCADE, related_name='attendance'
+            )
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:

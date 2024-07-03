@@ -10,10 +10,8 @@ class Comment(models.Model):
     commented_record = models.ForeignKey(Record, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
 
-
     class Meta:
         ordering = ["-created"]
-    
 
     def __str__(self):
         return f"{self.content}"
