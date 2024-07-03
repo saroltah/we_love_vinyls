@@ -9,17 +9,16 @@ from we_love_vinyls.permissions import IsMemberOrReadOnly
 from django.db.models import Count
 
 
-
 class AllProfiles(generics.ListAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
 
+
 class OneProfile(generics.RetrieveUpdateAPIView):
     serializer_class = ProfileSerializer
-    permission_classes =[IsMemberOrReadOnly]
+    permission_classes = [IsMemberOrReadOnly]
     lookup_field = 'slug'
     queryset = Profile.objects.annotate(
         liked_record_count=Count('member__like', distinct=True),
         attended_market_count=Count('member__attendance', distinct=True),
     ).order_by('-created')
-

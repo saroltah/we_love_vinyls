@@ -21,6 +21,3 @@ class Profile(models.Model):
 
     class Meta:
         ordering = ["-created"]
-    
-
-        

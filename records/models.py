@@ -47,7 +47,7 @@ class Record(models.Model):
     genre = models.CharField(
                             max_length=100,
                             choices=sorted(GENRE_CHOICES,
-                            key=lambda x:x[1]),
+                                           key=lambda x: x[1]),
                             default="Alternative Rock"
                             )
     track_list = models.TextField(default='')
@@ -60,20 +60,21 @@ class Record(models.Model):
     condition = models.CharField(
                             max_length=9,
                             choices=sorted(CONDITION_CHOICES,
-                            key=lambda x:x[1]),
+                                           key=lambda x: x[1]),
                             default="Good"
                             )
     image = models.ImageField(
         upload_to='images/', default='../default_record_ibxfab'
-    )
-
-    released =  models.IntegerField(null=True, blank=True, default=0)
-    price =  models.CharField(max_length=9, default="100 sek")
+        )
+    released = models.IntegerField(null=True, blank=True, default=0)
+    price = models.CharField(max_length=9, default="100 sek")
     location = models.CharField(max_length=50, default="Stockholm")
-    contact = models.CharField(max_length=50, default="email: example@email.com")
+    contact = models.CharField(max_length=50,
+                               default="email: example@email.com")
+
     class Meta:
         ordering = ["-created"]
-    
+
     class Meta:
         managed = True
         db_table = 'records_record'

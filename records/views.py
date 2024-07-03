@@ -14,9 +14,8 @@ class AllRecords(generics.ListCreateAPIView):
     queryset = Record.objects.annotate(
         members_liking_count=Count('like', distinct=True),
         comment_count=Count('comment', distinct=True),)
-
     filter_backends = [
-        filters.SearchFilter,DjangoFilterBackend,
+        filters.SearchFilter, DjangoFilterBackend,
     ]
     filterset_fields = [
         'genre',
@@ -25,7 +24,6 @@ class AllRecords(generics.ListCreateAPIView):
         'artist',
         'title',
     ]
-
     serializer_class = RecordSerializer
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly
@@ -34,11 +32,12 @@ class AllRecords(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(advertiser=self.request.user)
 
+
 class OneRecord(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = RecordSerializer
-    permission_classes =[IsAdvertiserOrReadOnly]
+    permission_classes = [IsAdvertiserOrReadOnly]
 
     queryset = Record.objects.annotate(
         members_liking_count=Count('like', distinct=True),
         comment_count=Count('comment', distinct=True),
-    ).order_by('-created')
+        ).order_by('-created')
