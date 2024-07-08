@@ -18,7 +18,7 @@ class AllRecords(generics.ListCreateAPIView):
         filters.SearchFilter, DjangoFilterBackend,
     ]
     filterset_fields = [
-        'genre', 'advertiser',
+        'genre', 'advertiser__id',
     ]
     search_fields = [
         'artist',
