@@ -7,8 +7,18 @@ from django.http import Http404
 from rest_framework import status, permissions, generics, filters
 from we_love_vinyls.permissions import IsOrganizerOrReadOnly
 from django.db.models import Count
+import django_filters
 from django_filters.rest_framework import DjangoFilterBackend
 
+
+
+class MarketFilter(django_filters.FilterSet):
+    country = django_filters.CharFilter(field_name='country', lookup_expr='icontains')
+    city = django_filters.CharFilter(field_name='city', lookup_expr='icontains')
+
+    class Meta:
+        model = Market
+        fields = ['country', 'city']
 
 class AllMarkets(generics.ListCreateAPIView):
     queryset = Market.objects.annotate(
@@ -17,9 +27,7 @@ class AllMarkets(generics.ListCreateAPIView):
     filter_backends = [
         DjangoFilterBackend,
     ]
-    filterset_fields = [
-        'country', 'city',
-    ]
+    filterset_class = MarketFilter
     serializer_class = MarketSerializer
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly
