@@ -37,7 +37,9 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Profile
-        fields = 'id', 'member', 'username', 'slug',
-        'preferred_music', 'about_me', 'created',
-        'image', 'is_member', 'liked_record_count',
-        'attended_market_count',
+        fields = [
+            'id', 'member', 'username', 'slug',
+            'preferred_music', 'about_me', 'created',
+            'image', 'is_member', 'liked_record_count',
+            'attended_market_count', 
+            ]
