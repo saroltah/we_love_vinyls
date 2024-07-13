@@ -99,6 +99,8 @@ CORS_ALLOWED_ORIGINS = [
     'https://we-love-vinyls-frontend-66f4e7fed390.herokuapp.com/'
 ]
 
+CORS_ALLOW_CREDENTIALS = True 
+
 ROOT_URLCONF = 'we_love_vinyls.urls'
 
 TEMPLATES = [
