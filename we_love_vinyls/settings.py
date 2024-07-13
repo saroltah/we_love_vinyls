@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'dj_rest_auth.registration',
+    'corsheaders',
     'records',
     'users',
     'markets',
@@ -77,6 +78,11 @@ ACCOUNT_LOGOUT_ON_GET = False
 REST_AUTH_SERIALIZERS = {'USER_DETAILS_SERIALIZER':
                          'we_love_vinyls.serializers.UserNowSerializer'}
 
+AUTHENTICATION_BACKENDS = [
+   "django.contrib.auth.backends.ModelBackend",
+   "allauth.account.auth_backends.AuthenticationBackend"
+]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -85,6 +91,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+]
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',  
+    'https://we-love-vinyls-frontend-66f4e7fed390.herokuapp.com/'
 ]
 
 ROOT_URLCONF = 'we_love_vinyls.urls'
