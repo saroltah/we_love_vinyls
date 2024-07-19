@@ -98,6 +98,7 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',  
     'https://we-love-vinyls-frontend-66f4e7fed390.herokuapp.com'
+    'https://3000-saroltah-welovevinylsfr-nwhnwzh93hl.ws.codeinstitute-ide.net'
 ]
 
 CORS_ALLOW_CREDENTIALS = True 
