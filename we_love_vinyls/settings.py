@@ -25,7 +25,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'we-love-vinyls-b-74b4f31a8a78.herokuapp.com', ]
+ALLOWED_HOSTS = ['127.0.0.1', 'we-love-vinyls-b-74b4f31a8a78.herokuapp.com', '*']
 
 
 # Application definition
