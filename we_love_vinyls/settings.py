@@ -110,8 +110,6 @@ CORS_ALLOWED_ORIGINS = [
     'https://3000-saroltah-welovevinylsfr-nwhnwzh93hl.ws.codeinstitute-ide.net',
 ]
 
-CORS_ALLOWED_ORIGIN_REGEXES = [r"^https://.*\.codeinstitute-ide\.net$",]
-
 CORS_ALLOW_CREDENTIALS = True 
 
 ROOT_URLCONF = 'we_love_vinyls.urls'
