@@ -2,7 +2,6 @@ import os
 from dotenv import load_dotenv
 from pathlib import Path
 import dj_database_url
-from datetime import timedelta
 
 
 # Load environment variables from .env file
@@ -59,35 +58,19 @@ INSTALLED_APPS = [
 SITE_ID = 1
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',  # Token-based auth
-        'dj_rest_auth.jwt_auth.JWTCookieAuthentication',  # JWT-based auth
-    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': [(
+        'rest_framework.authentication.SessionAuthentication'
+        if 'DEV' in os.environ
+        else 'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
+        )],
 
     'DATETIME_FORMAT': '%d %b %Y',
-
-  }
-
-if 'DEV' not in os.environ:
-        REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = [
-            'rest_framework.renderers.JSONRenderer',
-        ]
-  
-
-    
+    }
 
 REST_USE_JWT = True
 JWT_AUTH_COOKIE = 'my-app-auth'
 JWT_AUTH_SECURE = True
 JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
-JWT_AUTH_SAMESITE = 'None'
-
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
-    'ROTATE_REFRESH_TOKENS': True,
-    'BLACKLIST_AFTER_ROTATION': True,
-}
 
 ACCOUNT_LOGOUT_ON_GET = False
 
@@ -114,7 +97,7 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',  
     'https://we-love-vinyls-frontend-66f4e7fed390.herokuapp.com',
-    'https://3000-saroltah-welovevinylsfr-nwhnwzh93hl.ws.codeinstitute-ide.net',
+    'https://3000-saroltah-welovevinylsfr-nwhnwzh93hl.ws.codeinstitute-ide.net'
 ]
 
 CORS_ALLOW_CREDENTIALS = True 
