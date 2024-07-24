@@ -2,6 +2,7 @@ import os
 from dotenv import load_dotenv
 from pathlib import Path
 import dj_database_url
+from datetime import timedelta
 
 
 # Load environment variables from .env file
@@ -58,9 +59,10 @@ INSTALLED_APPS = [
 SITE_ID = 1
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [(
-         'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
-        )],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',  # Token-based auth
+        'dj_rest_auth.jwt_auth.JWTCookieAuthentication',  # JWT-based auth
+    ),
 
     'DATETIME_FORMAT': '%d %b %Y',
 
@@ -79,6 +81,13 @@ JWT_AUTH_COOKIE = 'my-app-auth'
 JWT_AUTH_SECURE = True
 JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
 JWT_AUTH_SAMESITE = 'None'
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
+}
 
 ACCOUNT_LOGOUT_ON_GET = False
 
