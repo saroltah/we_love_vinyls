@@ -8,7 +8,6 @@ import dj_database_url
 
 load_dotenv()
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,9 +22,9 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'we-love-vinyls-b-74b4f31a8a78.herokuapp.com', ]
+ALLOWED_HOSTS = ['127.0.0.1', 'we-love-vinyls-b-74b4f31a8a78.herokuapp.com', '*']
 
 
 # Application definition
@@ -98,8 +97,7 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',  
     'https://we-love-vinyls-frontend-66f4e7fed390.herokuapp.com',
-    "https://3000-saroltah-welovevinylsfr-nwhnwzh93hl.ws.codeinstitute-ide.net"
-
+    'https://3000-saroltah-welovevinylsfr-nwhnwzh93hl.ws.codeinstitute-ide.net'
 ]
 
 CORS_ALLOW_CREDENTIALS = True 
