@@ -96,14 +96,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-if 'CLIENT_ORIGIN' in os.environ:
-     CORS_ALLOWED_ORIGINS = [
-         'http://localhost:3000',  
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',  
     'https://we-love-vinyls-frontend-66f4e7fed390.herokuapp.com',
     'https://3000-saroltah-welovevinylsfr-nwhnwzh93hl.ws.codeinstitute-ide.net'
      ]
-else:
-     CORS_ALLOWED_ORIGIN_REGEXES = [
+
+CORS_ALLOWED_ORIGIN_REGEXES = [
          r"^https://.*\.gitpod\.io$",
      ]
 
