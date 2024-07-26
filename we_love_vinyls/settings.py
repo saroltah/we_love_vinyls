@@ -102,9 +102,7 @@ CORS_ALLOWED_ORIGINS = [
     'https://3000-saroltah-welovevinylsfr-nwhnwzh93hl.ws.codeinstitute-ide.net'
      ]
 
-CORS_ALLOWED_ORIGIN_REGEXES = [
-         r"^https://.*\.gitpod\.io$",
-     ]
+SEC_REFERRER_POLICY = None
 
 CORS_ALLOW_CREDENTIALS = True 
 
