@@ -98,7 +98,9 @@ MIDDLEWARE = [
 
 if 'CLIENT_ORIGIN' in os.environ:
      CORS_ALLOWED_ORIGINS = [
-         os.environ.get('CLIENT_ORIGIN')
+         'http://localhost:3000',  
+    'https://we-love-vinyls-frontend-66f4e7fed390.herokuapp.com',
+    'https://3000-saroltah-welovevinylsfr-nwhnwzh93hl.ws.codeinstitute-ide.net'
      ]
 else:
      CORS_ALLOWED_ORIGIN_REGEXES = [
