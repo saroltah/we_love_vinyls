@@ -7,8 +7,16 @@ from django.http import Http404
 from rest_framework import status, permissions, generics, filters
 from we_love_vinyls.permissions import IsAdvertiserOrReadOnly
 from django.db.models import Count
+import django_filters
 from django_filters.rest_framework import DjangoFilterBackend
 
+class RecordFilter(django_filters.FilterSet):
+    genre = django_filters.CharFilter(field_name='genre', lookup_expr='icontains')
+    member = django_filters.CharFilter(field_name='like__member__id', lookup_expr='icontains')
+
+    class Meta:
+        model = Record
+        fields = ['genre', 'advertiser__id', 'member']
 
 class AllRecords(generics.ListCreateAPIView):
     queryset = Record.objects.annotate(
@@ -17,9 +25,7 @@ class AllRecords(generics.ListCreateAPIView):
     filter_backends = [
         filters.SearchFilter, DjangoFilterBackend,
     ]
-    filterset_fields = [
-        'genre', 'advertiser__id',
-    ]
+    filterset_class = RecordFilter
     search_fields = [
         'artist',
         'title',
