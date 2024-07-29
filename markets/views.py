@@ -18,7 +18,7 @@ class MarketFilter(django_filters.FilterSet):
 
     class Meta:
         model = Market
-        fields = ['country', 'city']
+        fields = ['country', 'city', 'organizer_id']
 
 class AllMarkets(generics.ListCreateAPIView):
     queryset = Market.objects.annotate(
