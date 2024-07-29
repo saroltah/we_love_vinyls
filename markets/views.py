@@ -15,10 +15,11 @@ from django_filters.rest_framework import DjangoFilterBackend
 class MarketFilter(django_filters.FilterSet):
     country = django_filters.CharFilter(field_name='country', lookup_expr='icontains')
     city = django_filters.CharFilter(field_name='city', lookup_expr='icontains')
+    member = django_filters.CharFilter(field_name='attendance__member__id', lookup_expr='icontains')
 
     class Meta:
         model = Market
-        fields = ['country', 'city', 'organizer_id']
+        fields = ['country', 'city', 'organizer__id', 'member']
 
 class AllMarkets(generics.ListCreateAPIView):
     queryset = Market.objects.annotate(
