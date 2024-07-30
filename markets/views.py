@@ -14,7 +14,7 @@ from django_filters.rest_framework import DjangoFilterBackend, FilterSet, CharFi
 
 class MarketFilter(django_filters.FilterSet):
     member = django_filters.CharFilter(field_name='attendance__member__id', lookup_expr='icontains')
-    organizer = django_filters.CharFilter(field_name='attendance__organizer__id', lookup_expr='icontains')
+    organizer = django_filters.CharFilter(field_name='organizer__id', lookup_expr='icontains')
 
     class Meta:
         model = Market
