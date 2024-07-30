@@ -8,27 +8,30 @@ from rest_framework import status, permissions, generics, filters
 from we_love_vinyls.permissions import IsOrganizerOrReadOnly
 from django.db.models import Count
 import django_filters
-from django_filters.rest_framework import DjangoFilterBackend
+from django_filters.rest_framework import DjangoFilterBackend, FilterSet, CharFilter
 
 
 
 class MarketFilter(django_filters.FilterSet):
-    country = django_filters.CharFilter(field_name='country', lookup_expr='icontains')
-    city = django_filters.CharFilter(field_name='city', lookup_expr='icontains')
     member = django_filters.CharFilter(field_name='attendance__member__id', lookup_expr='icontains')
+    organizer = django_filters.CharFilter(field_name='attendance__organizer__id', lookup_expr='icontains')
 
     class Meta:
         model = Market
-        fields = ['country', 'city', 'organizer__id', 'member']
+        fields = ['organizer__id', 'member']
 
 class AllMarkets(generics.ListCreateAPIView):
     queryset = Market.objects.annotate(
         members_attending_count=Count('attendance', distinct=True),
     ).order_by('-created')
     filter_backends = [
-        DjangoFilterBackend,
+        filters.SearchFilter, DjangoFilterBackend,
     ]
     filterset_class = MarketFilter
+    search_fields = [
+        'country',
+        'city',
+    ]
     serializer_class = MarketSerializer
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly
