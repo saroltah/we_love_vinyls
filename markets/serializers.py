@@ -5,6 +5,7 @@ from likes.models import Attendance
 
 class MarketSerializer(serializers.ModelSerializer):
     organizer = serializers.ReadOnlyField(source='organizer.username')
+    organizer_id = serializers.ReadOnlyField(source='organizer.profile.id')
     is_organizer = serializers.SerializerMethodField()
     members_attending_count = serializers.ReadOnlyField()
 
@@ -17,5 +18,5 @@ class MarketSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'organizer', 'country', 'city', 'address', 'date',
             'start', 'end', 'description', 'is_organizer',
-            'members_attending_count',
+            'members_attending_count', 'organizer_id'
             ]

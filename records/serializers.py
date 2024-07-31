@@ -7,7 +7,7 @@ from django.contrib.humanize.templatetags.humanize import naturaltime
 
 class RecordSerializer(serializers.ModelSerializer):
     advertiser = serializers.ReadOnlyField(source='advertiser.username')
-    advertiser_id = serializers.ReadOnlyField(source='advertiser.profile_id')
+    advertiser_id = serializers.ReadOnlyField(source='advertiser.profile.id')
     is_advertiser = serializers.SerializerMethodField()
     members_liking_count = serializers.ReadOnlyField()
     comment_count = serializers.ReadOnlyField()
@@ -41,5 +41,5 @@ class RecordSerializer(serializers.ModelSerializer):
             'id', 'advertiser', 'artist', 'title', 'track_list',
             'created', 'condition', 'image', 'released', 'genre',
             'is_advertiser', 'members_liking_count', 'comment_count',
-            'price', 'location', 'contact', 'advertiser_id'
+            'price', 'location', 'contact', 'advertiser_id',
         ]
