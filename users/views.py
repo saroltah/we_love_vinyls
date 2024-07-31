@@ -17,7 +17,6 @@ class AllProfiles(generics.ListAPIView):
 class OneProfile(generics.RetrieveUpdateAPIView):
     serializer_class = ProfileSerializer
     permission_classes = [IsMemberOrReadOnly]
-    lookup_field = 'slug'
     queryset = Profile.objects.annotate(
         liked_record_count=Count('member__like', distinct=True),
         attended_market_count=Count('member__attendance', distinct=True),
