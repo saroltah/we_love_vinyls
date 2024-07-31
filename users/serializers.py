@@ -10,6 +10,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     member = serializers.ReadOnlyField(source='member.username')
     is_member = serializers.SerializerMethodField()
     liked_record_count = serializers.ReadOnlyField()
+    username = serializers.ReadOnlyField()
     attended_market_count = serializers.ReadOnlyField()
     created = serializers.SerializerMethodField()
 
