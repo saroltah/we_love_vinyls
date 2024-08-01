@@ -9,6 +9,7 @@ class LikeSerializer(serializers.ModelSerializer):
     is_member = serializers.SerializerMethodField()
     created = serializers.SerializerMethodField()
     member_id = serializers.ReadOnlyField(source='member.profile.id')
+    
 
     def get_created(self, obj):
         return naturaltime(obj.created)
@@ -20,7 +21,7 @@ class LikeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Like
         fields = [
-            'id', 'member', 'liked_record', 'created', 'is_member'
+            'id', 'member', 'liked_record', 'created', 'is_member', 'member_id',
         ]
 
     def create(self, validated_data):
