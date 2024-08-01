@@ -100,6 +100,8 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',  
     'https://we-love-vinyls-frontend-66f4e7fed390.herokuapp.com',
     'https://3000-saroltah-welovevinylsfr-nwhnwzh93hl.ws.codeinstitute-ide.net'
+    'http://localhost:3001',  
+    'https://3001-saroltah-welovevinylsfr-nwhnwzh93hl.ws.codeinstitute-ide.net'
      ]
 
 SEC_REFERRER_POLICY = None
