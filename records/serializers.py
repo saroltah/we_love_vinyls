@@ -13,6 +13,7 @@ class RecordSerializer(serializers.ModelSerializer):
     comment_count = serializers.ReadOnlyField()
     created = serializers.SerializerMethodField()
     advertiser_image = serializers.ReadOnlyField(source='advertiser.profile.image.url')
+    like_id = serializers.SerializerMethodField()
 
     def get_created(self, obj):
         return naturaltime(obj.created)
@@ -36,11 +37,20 @@ class RecordSerializer(serializers.ModelSerializer):
         request = self.context['request']
         return request.user == obj.advertiser
 
+    def get_like_id(self, obj):
+        user = self.context['request'].user
+        if user.is_authenticated:
+            like = Like.objects.filter(
+                member=user, liked_record=obj
+            ).first()
+            return like.id if like else None
+        return None
+
     class Meta:
         model = Record
         fields = [
             'id', 'advertiser', 'artist', 'title', 'track_list',
             'created', 'condition', 'image', 'released', 'genre',
             'is_advertiser', 'members_liking_count', 'comment_count',
-            'price', 'location', 'contact', 'advertiser_id', 'advertiser_image'
+            'price', 'location', 'contact', 'advertiser_id', 'advertiser_image', 'like_id'
         ]
