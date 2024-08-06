@@ -9,6 +9,9 @@ class MarketSerializer(serializers.ModelSerializer):
     is_organizer = serializers.SerializerMethodField()
     members_attending_count = serializers.ReadOnlyField()
     organizer_image = serializers.ReadOnlyField(source='organizer.profile.image.url')
+    start = serializers.TimeField(format='%H:%M')
+    end = serializers.TimeField(format='%H:%M')
+
     
 
     def get_is_organizer(self, obj):
