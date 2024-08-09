@@ -42,5 +42,5 @@ class ProfileSerializer(serializers.ModelSerializer):
             'id', 'member', 'username', 'slug',
             'preferred_music', 'about_me', 'created',
             'image', 'is_member', 'liked_record_count',
-            'attended_market_count', 
+            'attended_market_count',
             ]

@@ -25,7 +25,8 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'we-love-vinyls-b-74b4f31a8a78.herokuapp.com', '*']
+ALLOWED_HOSTS = [
+    '127.0.0.1', 'we-love-vinyls-b-74b4f31a8a78.herokuapp.com', '*']
 
 
 # Application definition
@@ -59,9 +60,6 @@ INSTALLED_APPS = [
 SITE_ID = 1
 
 REST_FRAMEWORK = {
-    
-    
-
     'DEFAULT_AUTHENTICATION_CLASSES': [(
         'rest_framework.authentication.SessionAuthentication'
         if 'DEV' in os.environ
@@ -99,17 +97,21 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+python
+Copy code
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',  
+    'http://localhost:3000',
     'https://we-love-vinyls-frontend-66f4e7fed390.herokuapp.com',
-    'https://3000-saroltah-welovevinylsfr-nwhnwzh93hl.ws.codeinstitute-ide.net',
-    'http://localhost:3001',  
-    'https://3001-saroltah-welovevinylsfr-nwhnwzh93hl.ws.codeinstitute-ide.net'
-     ]
+    'https://3000-saroltah-welovevinylsfr-'
+    'nwhnwzh93hl.ws.codeinstitute-ide.net',
+    'http://localhost:3001',
+    'https://3001-saroltah-welovevinylsfr-'
+    'nwhnwzh93hl.ws.codeinstitute-ide.net'
+]
 
 SEC_REFERRER_POLICY = None
 
-CORS_ALLOW_CREDENTIALS = True 
+CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOW_METHODS = [
     "DELETE",
@@ -207,13 +209,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = [BASE_DIR / 'static',]
+STATICFILES_DIRS = [BASE_DIR / 'static']
 STORAGES = {
     "staticfiles": {
         "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
     }
 }
-
 
 
 # Default primary key field type

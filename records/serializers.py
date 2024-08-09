@@ -12,7 +12,8 @@ class RecordSerializer(serializers.ModelSerializer):
     members_liking_count = serializers.ReadOnlyField()
     comment_count = serializers.ReadOnlyField()
     created = serializers.SerializerMethodField()
-    advertiser_image = serializers.ReadOnlyField(source='advertiser.profile.image.url')
+    advertiser_image = serializers.ReadOnlyField(
+                       source='advertiser.profile.image.url')
     like_id = serializers.SerializerMethodField()
 
     def get_created(self, obj):
@@ -52,5 +53,6 @@ class RecordSerializer(serializers.ModelSerializer):
             'id', 'advertiser', 'artist', 'title', 'track_list',
             'created', 'condition', 'image', 'released', 'genre',
             'is_advertiser', 'members_liking_count', 'comment_count',
-            'price', 'location', 'contact', 'advertiser_id', 'advertiser_image', 'like_id'
+            'price', 'location', 'contact', 'advertiser_id',
+            'advertiser_image', 'like_id'
         ]

@@ -8,12 +8,11 @@ class MarketSerializer(serializers.ModelSerializer):
     organizer_id = serializers.ReadOnlyField(source='organizer.profile.id')
     is_organizer = serializers.SerializerMethodField()
     members_attending_count = serializers.ReadOnlyField()
-    organizer_image = serializers.ReadOnlyField(source='organizer.profile.image.url')
+    organizer_image = serializers.ReadOnlyField(
+                      source='organizer.profile.image.url')
     start = serializers.TimeField(format='%H:%M')
     end = serializers.TimeField(format='%H:%M')
     attendance_id = serializers.SerializerMethodField()
-
-    
 
     def get_is_organizer(self, obj):
         request = self.context['request']
@@ -33,5 +32,6 @@ class MarketSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'organizer', 'country', 'city', 'address', 'date',
             'start', 'end', 'description', 'is_organizer',
-            'members_attending_count', 'organizer_id', 'organizer_image','attendance_id'
+            'members_attending_count', 'organizer_id', 'organizer_image',
+            'attendance_id'
             ]

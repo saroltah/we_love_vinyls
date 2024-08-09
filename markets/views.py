@@ -8,17 +8,23 @@ from rest_framework import status, permissions, generics, filters
 from we_love_vinyls.permissions import IsOrganizerOrReadOnly
 from django.db.models import Count
 import django_filters
-from django_filters.rest_framework import DjangoFilterBackend, FilterSet, CharFilter
-
+from django_filters.rest_framework import (
+    DjangoFilterBackend,
+    FilterSet,
+    CharFilter,
+)
 
 
 class MarketFilter(django_filters.FilterSet):
-    member = django_filters.CharFilter(field_name='attendance__member__id', lookup_expr='icontains')
-    organizer = django_filters.CharFilter(field_name='organizer__id', lookup_expr='icontains')
+    member = django_filters.CharFilter(
+             field_name='attendance__member__id', lookup_expr='icontains')
+    organizer = django_filters.CharFilter(
+                field_name='organizer__id', lookup_expr='icontains')
 
     class Meta:
         model = Market
         fields = ['organizer', 'member']
+
 
 class AllMarkets(generics.ListCreateAPIView):
     queryset = Market.objects.annotate(
