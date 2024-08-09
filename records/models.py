@@ -61,7 +61,7 @@ class Record(models.Model):
                             max_length=9,
                             choices=sorted(CONDITION_CHOICES,
                                            key=lambda x: x[1]),
-                            default="Good"
+                            default="good"
                             )
     image = models.ImageField(
         upload_to='images/', default='../default_record_ibxfab'
