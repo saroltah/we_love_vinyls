@@ -257,6 +257,13 @@ I started coding in VSCode and then changed to GitPod in case I needed tutor hel
 2. Set up the .env file 
 3. Set up Cloudinary
 4. Create an entity relationship diagram model
+
+<br>
+
+![model-relationship](</readme/assets/model-relationship.png>)
+<br>
+
+
 5. Create user stories
 6. Create models
 7. Add signals
@@ -668,9 +675,6 @@ def __init__(self): super().__init__(user_field='member')
 - default record: Photo by [Brett Jordan](https://unsplash.com/@brett_jordan?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash) on [Unsplash](https://unsplash.com/photos/black-and-white-vinyl-record-hrUhyFq6u-A?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash)
 
 
-
-
-Special thanks to Code Institute tutor support for helping out, when I got stuck in debugging.
 
 
 

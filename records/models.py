@@ -66,7 +66,7 @@ class Record(models.Model):
     image = models.ImageField(
         upload_to='images/', default='../default_record_ibxfab'
         )
-    released = models.IntegerField(null=True, blank=True, default=0)
+    released = models.IntegerField(null=True, default=0)
     price = models.CharField(max_length=9, default="100 sek")
     location = models.CharField(max_length=50, default="Stockholm")
     contact = models.CharField(max_length=50,
