@@ -48,7 +48,7 @@ class Record(models.Model):
                             max_length=100,
                             choices=sorted(GENRE_CHOICES,
                                            key=lambda x: x[1]),
-                            default="alternative Rock"
+                            default="alternative-rock"
                             )
     track_list = models.TextField(default='')
     created = models.DateTimeField(auto_now_add=True)
