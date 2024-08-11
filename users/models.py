@@ -7,7 +7,8 @@ from django.db.models.signals import post_save
 
 class Profile(models.Model):
     member = models.OneToOneField(User, on_delete=models.CASCADE)
-    username = models.CharField(max_length=50, unique=True)
+    id = models.BigAutoField(primary_key=True)
+    username = models.CharField(max_length=50)
     slug = AutoSlugField(unique=True, populate_from='username')
     preferred_music = models.TextField(blank=True)
     about_me = models.TextField(blank=True)
