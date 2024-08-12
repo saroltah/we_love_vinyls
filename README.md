@@ -164,6 +164,7 @@ First, I wanted to separate them, but they connected so much that it made more s
 - Dislike a record
 - Comment on a record - edit and delete the comment.
 - Filter a record by genre
+- The genre is in alphabetical order, so it is easier to find the right one
 - Search for a record by artist or title
 - See the records the user liked
 - See the number of likes of a record
@@ -269,11 +270,11 @@ The values are unique to your project.
 
 I followed the agile methods and MoSCoW labeling - must have, should have, could have, and won't have. I prioritized and did first what was most important, then left the less important things to the end, setting up the won't have features as future features.
 
-I started with the backend, since that is the base of the app, moved to the front end, and left styling for the end since I prioritized working features over style.
+I started with the backend, since that is the base of the app, moved to the front end, and left styling to the end since I prioritized working on features over style.
 
 I was making notes continuously, so I wrote down new ideas, what was working, what was not, and where I needed to go back. Where I met with an error I couldn't handle, rather moved on due to the time frame I had and decided to return later.
 
-(I always opened dev tools and source code to check how the data returned, look for different details, or try out different styles. It helped me find ID-s, understand the forms, and validate my html code.)
+I always opened dev tools and source code to check how the data returned.
 
 I worked on more user stories simultaneously.
 
@@ -358,7 +359,7 @@ Rest permissions working:
 20.  Add likes to record serializer, and attendance to market serializer. 
 
 <br>
-Can't attemnd twice on the same market
+Can't attend twice on the same market
 <br>
 
 ![Can’t attend twice on the same market](</readme/assets/cant-attend-twice.png>)
@@ -376,7 +377,7 @@ Can't attemnd twice on the same market
 
 26. add comment count to records
 
-In comment count, I connected the comments with content, not the member, because one member can leave more comments.
+In comment count, I connected the comments with content, not the member, because one member can add more comments.
 
 27. add counts to all records and all markets too
 
@@ -405,7 +406,7 @@ Filter attendance by member ID
 
 36. Test
 
-At this point, I added the front end and accommodated the code for it:
+At this point, I added the [front end](https://github.com/saroltah/we_love_vinyls_frontend) and accommodated the code for it:
 
 37. Make search options case insensitive.
 
@@ -489,7 +490,7 @@ What to do | How to do | Expected outcome | Actual outcome
 | Open the page | Click on the URL | It shows a welcome message |  It shows a welcome message
 | Get to log in page | Write /dj-rest-auth/login/ to the end of URL, hit enter |  It shows log in page |  It shows log in page
 | Log in | Fill username & password, click on POST |  It shows my name and log out button |  It shows log in page | It shows my name and log out button
-| Log in with wrong details | Fill in the wrong username & password, click on POST |  It shows me an error message. It says: "Unable to log in with provided credentials."
+| Log in with wrong details | Fill in the wrong username & password, click on POST |  It shows me an error message. | It says: "Unable to log in with provided credentials." 
 | Log in with missing details | Fill in the email, but not username and/or password, click on POST |  It shows me an error message | "Must include \"username\" and \"password\"."
 | Log in without password | Fill in the username and/or email, click on POST |  It shows me an error message | "This field may not be blank."
 | Go to log out page | Write /dj-rest-auth/logout/ to the end of URL, hit enter |  It shows the logout page |  It shows the log out page
@@ -537,17 +538,6 @@ What to do | How to do | Expected outcome | Actual outcome
 | See the comments on a special record | Write the record’s ID to the filter field | It shows the comments for the record of that ID, if the record is not found, or noone liked, there is an empty array| I see matches, for no match I see the empty array
 | See if the comment count is working | I go to the record’s page, and check its comment count | It is now 3. | It shows 3, as I sent 3 comments. 
 | See the users lists | Put /users/ to the end of the URL |  It brings me to the users' page, where I can see the list of records |  It brings me to the users' page, where I can see the list of markets
-| Add a record logged in | Under the list, I fill out the field and click on POST |  It brings me to the record page, where I can see my new record |  It brings me to the record page, where I can see my new record, it says HTTP 201 created
-| Add a record without logged in | I scroll down to find the field | Field is not shown | Field is not shown
-| Go to one record page | I write to the end of the URL /records/1 - the ID of the record |  It shows only that one record and editable fields with the details |  It shows only that one record and editable fields with the details
-| Edit record if I am the advertiser | I edit the form below and click on put |  It saves changes and refreshes data |  It saves changes and refreshes data
-| Delete record if I am the advertiser | I see a field asking are you sure you want to delete? I click on delete. |  It deletes the data and goes back to the record list page  |  It deletes the data and goes back to the record list page
-| Edit record if I am not the advertiser | I scroll down to find the editing field |  Field is not shown |  Field is not shown
-| Delete record if I am not the advertiser | I scroll to find deleting field | Field is not shown  |  Field is not shown 
-| Search record | I fill out the search field with the name of an artist/album title. | Field shows the result, or writes out there is no match  |  I see matches, for no match I see an empty array. It only takes count the first word in the search
-| Case insensitive search | I fill out search field with small letters only | Field shows the result (with big capital letters), or writes out there is no match  |  I see matches, for no match I see the empty array
-| Filter by genre | I choose an option from genre-s, click on submit | Field shows the result, or writes out there is no match  |  I see matches, for no match I see the empty array
-| Filter by advertiser ID | I write a number in the filter, and click on submit | Field shows the result, or writes out there is no match  |  I see matches, for no match I see the empty array. I can also look for both advertiser ID and genre at the same time.
 | In the admin site I can see, edit, delete all profiles | I open admin and click on profiles, and choose the names. I edit fields and click on save or click on delete.| The profile is edited and/or deleted. | The profile is edited and/or deleted.
 | In the admin site I add a new profile | I open admin click on records, and choose to add a profile. I edit fields and click on save. | The profile is added | The profile is added.
 | In the admin site I can see, edit, delete all records | I open admin and click on records, and choose the record’s title. I edit fields and click on save or click on delete.| The record is edited and/or deleted. | The record is edited and/or deleted.
@@ -617,6 +607,8 @@ Comment added from admin page:
 
 ### Bugs and solutions
 
+<br>
+
 **1.**  Field name `id` is not valid for model `Profile` in `users.serializers.ProfileSerializer` - the id field is not created by itself. 
 
 solution: It was not managed, so I set managed true in my model. 
@@ -625,15 +617,15 @@ class Meta:
         managed = True
         db_table = 'records_record'
         
-        —That solves the record's ID, but the profile ID does not because the profile is automatically created when the User is. So, the user needs to be set to managed true.
-
+That solves the record's ID, but the profile ID does not because the profile is automatically created when the User is. So, the user needs to be set to managed true.
 
 I put id to read_only field, and now it is shown. 
 
 id = serializers.ReadOnlyField(source='user.id')
 
- - Then I noticed, username has the primary key attribute. 
+ Then I noticed, username has the primary key attribute... that was the reason. I deleted that, and fixed migrations.
 
+<br>
 
 **2.** Permission is not working. It said market and record has no “member” field.
 
@@ -641,13 +633,23 @@ I chose different naming in all 3 apps because it makes more sense, but all of t
 
 I did not want to repeat the same code three times, so I created a user_field variable that I could change for all three permission classes.
  
+ <br>
+
 **3.** I changed my views to generic, and got this error since I was using slug: Expected view OneProfile to be called with a URL keyword argument named "pk". Solution: I added the lookup_field.
+
+<br>
 
 **4.** I got the like’s ID, not the record’s ID when I want to present which records the user liked. - through like id I can see the liked_record id. - solution: Set up filter by users to the like views..
 
+<br>
+
 **5.** When I want to show all the markets, user attends, only shows the first one. - add filters, in backend I have data separate, but in frontend I can put them on the same (or any) page
 
+<br>
+
 **6.** Can’t install django-rest-auth with social - Needed to downgrade my python, so I created a new virtual environment in my VS CODE and continued to code there. 
+
+<br>
 
 **7.** I wanted to login, got this error: 
 Exception Value:
@@ -660,8 +662,12 @@ Method Not Allowed: /dj-rest-auth/login/
 
 Solution: JWT and PyJWT clashed, needed to uninstall both and install back PyJWT. 
 
+<br>
+
 **8.** The search field is case-sensitive.
 The documentation says it should be insensitive by default, but it still doesn’t work. - Solution: Added django_filters contains.
+
+<br>
 
 **9.** Editing and deleting did not work.. On the local server, when I run from VSCode they do work, but when deployed on Heroku, they don’t. The GET Url has the edited version, it says the get method is allowed, still, the data is untouched.. I investigated cookies and token error, my Google Chrome blocked the third-party cookies, so I need to set up the settings.
 
@@ -678,7 +684,7 @@ The documentation says it should be insensitive by default, but it still doesn�
 ### Content
  -  Some content like the readme setup or signals file setup is from my [Ghost Stories](https://github.com/saroltah/ghost_stories) project. I used my previous project as inspiration. 
 
-- I share ReadMe content with the front-end side of my project
+- I share ReadMe content with the [front-end](https://github.com/saroltah/we_love_vinyls_frontend) side of my project
 
 - Permission variables: [chatGPT](https://chat.openai.com/)
 
