@@ -50,7 +50,7 @@ class Record(models.Model):
                                            key=lambda x: x[1]),
                             default="alternative-rock"
                             )
-    track_list = models.TextField(default='')
+    tracklist = models.TextField(default='')
     created = models.DateTimeField(auto_now_add=True)
     CONDITION_CHOICES = (
         ("new", "New"),
