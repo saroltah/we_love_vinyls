@@ -12,7 +12,7 @@ We love vinlys is an online platform dedicated to the buying, selling, and tradi
 - Convenient Trading and Selling: Users can easily sell or trade their vinyl records, helping them to refresh their collection .
 - Event Information: The site offers information about local and international vinyl markets and events, giving users opportunities to engage in person, expand their network, and enjoy the vinyl community experience.
 - Diverse Collection: With a wide range of genres and eras represented, users can explore and expand their musical horizons.
-- Trust and Security: The platform ensures secure transactions and trusted interactions, providing peace of mind for buyers and sellers.
+
 
 
 ## Epics and user stories
@@ -26,7 +26,6 @@ Github project:
 ![github project](/readme/assets/github-project.png)
 <br>
 
-All user stories have acceptance criteria also.
 
 ### Epics:
 
@@ -48,13 +47,15 @@ As my project involved, I changed some prioritization, but this is the original 
 
 ### User stories:
 
-<u>Must have</u>
+<br>
+
+#### Must have
+
+<br>
 
 **Authentication: Sign up:** As a user, I can sign up to use all the website's features.
 
 **Authentication: Login/out:** As a user, I can log in and out to protect my data and privacy.
-
-**Authentication: Forgotten password:** As a user, I can reset my password if I forget it.
 
 **Profile: Edit/delete profile:** As a user, I want to be able to edit or delete my profile so I can change my mind about using the page and edit my errors.
 
@@ -72,8 +73,13 @@ As my project involved, I changed some prioritization, but this is the original 
 
  **Admin: Supervision:** As an admin, I want to supervise the profile and content from the admin panel, so I can remove inappropriate content.
 
+<br>
 
-<u>Should have</u>
+#### Should have
+
+<br>
+
+**Authentication: Forgotten password:** As a user, I can reset my password if I forget it.
 
 **Profile: Uploaded records:** As a user, I want to see all the records the users uploaded so I can buy more at once. 
 
@@ -95,8 +101,11 @@ As my project involved, I changed some prioritization, but this is the original 
 
 **Miscellaneous: Error messages:** As a user, I want to receive error messages if something goes wrong so I know what went wrong.
 
+<br>
 
- <u>Could have</u>
+ #### Could have
+
+ <br>
 
 **Authentication: Sign up with social media:** As a user I want to sign up with my social media account, so it is so much quicker.
 
@@ -110,15 +119,28 @@ As my project involved, I changed some prioritization, but this is the original 
 
 **Profile: Messages:** As a user, I want to send private messages about the record I want to buy.
 
+<br>
 
-<u>Won't have</u>
+#### Won't have
+
+<br>
  
-Initially, I didn’t put anything here, just as the project involved. In the end, I put here Inside chat, because I was sure I would not implement them. The rest I left will be moved to the next coding version.
+Initially, I didn’t put anything here, just as the project involved. In the end, I put here the following, because I had no time to implement them:
+
+- Profile: past events,
+- Profile: messages
+- Menu: about and terms
+- Authentication: sign up with social media
+- Authentication: forgotten password. 
+
+However, to continue and evolve the project, I will revisit these items and put them in the next version.
 
 I linked the back-end and front-end parts to the same project, and user stories only went to the “Done” section when they were all done in both parts. 
 First, I wanted to separate them, but they connected so much that it made more sense.
 
 ### Existing features
+
+<br>
 
 **Authentication**:
 
