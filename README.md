@@ -242,7 +242,13 @@ First, I wanted to separate them, but they connected so much that it made more s
 - **Back-end Heroku deployment:**
 
 1. On the Heroku dashboard create new app with unique name
-2. Settings - reveal the config vars - Add key DISABLE_COLLECTSTATIC with value 1 (later with staticfiles we delete it, but we add Cloudinary details: CLOUD_NAME, API_KEY, SECRET_KEY.
+2. Settings - reveal the config vars - Add the following keys:
+<br>
+
+![reveal-configvars](</readme/assets/config-vars.png>)
+<br>
+The values are unique to your project.
+
 3. Update our code: install gunicorn, and refresh requirement.txt
 4. Create Procfile in the root directory, and add: web: gunicorn your_project_name.wsgi
 5. In settings.py set Debug = False, and add,'.herokuapp.com' to ALLOWED_HOSTS
