@@ -8,16 +8,25 @@ from rest_framework import status, permissions, generics, filters
 from we_love_vinyls.permissions import IsAdvertiserOrReadOnly
 from django.db.models import Count
 import django_filters
-from django_filters.rest_framework import DjangoFilterBackend, FilterSet, CharFilter
+from django_filters.rest_framework import (
+    DjangoFilterBackend,
+    FilterSet,
+    CharFilter,
+)
+
 
 class RecordFilter(django_filters.FilterSet):
-    genre = django_filters.CharFilter(field_name='genre', lookup_expr='icontains')
-    member = django_filters.CharFilter(field_name='like__member__id', lookup_expr='icontains')
-    advertiser = django_filters.CharFilter(field_name='advertiser__id', lookup_expr='icontains')
+    genre = django_filters.CharFilter(
+        field_name='genre', lookup_expr='icontains')
+    member = django_filters.CharFilter(
+        field_name='like__member__id', lookup_expr='icontains')
+    advertiser = django_filters.CharFilter(
+        field_name='advertiser__id', lookup_expr='icontains')
 
     class Meta:
         model = Record
         fields = ['genre', 'advertiser', 'member']
+
 
 class AllRecords(generics.ListCreateAPIView):
     queryset = Record.objects.annotate(
@@ -29,7 +38,7 @@ class AllRecords(generics.ListCreateAPIView):
     ]
 
     filterset_class = RecordFilter
-    
+
     search_fields = [
         'artist',
         'title',
@@ -41,6 +50,7 @@ class AllRecords(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(advertiser=self.request.user)
+
 
 class OneRecord(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = RecordSerializer
