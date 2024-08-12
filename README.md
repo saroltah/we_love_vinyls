@@ -245,7 +245,7 @@ First, I wanted to separate them, but they connected so much that it made more s
 2. Settings - reveal the config vars - Add the following keys:
 <br>
 
-![reveal-configvars](</readme/assets/config-vars.png>)
+![reveal-configvars](</readme/assets/reveal-configvars.png>)
 <br>
 The values are unique to your project.
 
